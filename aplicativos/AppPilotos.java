@@ -161,9 +161,28 @@ public class AppPilotos {
                     System.out.println("Número de série: " + aeronaves[i].getNumeroSerie());
                 }
                 voltarMenu(scan);
-    }
 
-            } while (opcao != 0);
+                } else if (opcao == 6) {
+                System.out.print("Por padrão, o sistema permite até 5 cadastros na base.\nDeseja realmente alterar a quantidade máxima? Digite 1 para sim ou 2 para retornar ao menu. ");
+                int opc = scan.nextInt();
+                if (opc == 1) {
+                    System.out.print("Digite o tamanho do novo armazenamento: ");
+                    int tamanhoVt = scan.nextInt();
+                    Piloto[] aux = pilotos;
+                    pilotos = new Piloto[tamanhoVt];
+                    MAX_ELEMENTOS = tamanhoVt;
+    
+                    for (int i = 0; i < qtdCadastrados; i++) {
+                        pilotos[i] = aux[i];
+                    }
+                    System.out.println("Espaço de armazenamento alterado com sucesso!");
+                    voltarMenu(scan);
+                
+            } else voltarMenu(scan);
+
+            }  
+
+         }  while (opcao != 0);
     }
 
     private static boolean validarCPF(String cpf) {
