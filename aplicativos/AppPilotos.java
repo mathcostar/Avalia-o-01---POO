@@ -54,10 +54,10 @@ public class AppPilotos {
                     aumentarArmazenamento(scan);
                     break;
                 case 0:
-                    System.out.println("Saindo...");
+                    System.out.println("Saindo...\n");
                     return;
                 default:
-                    System.out.println("Opção inválida! Verifique.");
+                    System.out.println("Opção inválida! Verifique");
                     break;
             }
 
