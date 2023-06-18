@@ -11,11 +11,12 @@ public class AppPilotos {
 
         Scanner scan = new Scanner(System.in);
 
-        int MAX_ELEMENTOS = 5; // Aqui, estarei colocando 5 cadastros por padrão...
+        int MAX_PILOTOS = 5; // Aqui, estarei colocando 5 cadastros por padrão...
+        int MAX_AERONAVES = 5; // Aqui, estarei colocando 5 cadastros por padrão...
         int opcao, qtdCadastrados = 0;
         int qtdAeronaves = 0;
-        Piloto[] pilotos = new Piloto[MAX_ELEMENTOS];
-        Aeronave[] aeronaves = new Aeronave[MAX_ELEMENTOS];
+        Piloto[] pilotos = new Piloto[MAX_PILOTOS];
+        Aeronave[] aeronaves = new Aeronave[MAX_AERONAVES];
 
         // Começando o programa...
 
@@ -35,7 +36,7 @@ public class AppPilotos {
             scan.nextLine();
 
             if (opcao == 1) { 
-                if (qtdCadastrados == MAX_ELEMENTOS) {
+                if (qtdCadastrados == MAX_PILOTOS) {
                     System.out.println("\nNão há espaço para um novo cadastro de piloto. Retorne ao Menu e digite a opção '4' para aumentar o armazenamento.");
                     voltarMenu(scan);
                     continue;
@@ -128,7 +129,7 @@ public class AppPilotos {
                     System.out.println((i + 1) + " - Nome: " + pilotos[i].getNome() + ", brevê: " + pilotos[i].getBreve());
                 }
 
-                System.out.print("Escolha o número do piloto a vincular à aeronave: ");
+                System.out.print("Escolha o número do brevê do piloto que vincular à aeronave: ");
                 int numeroPiloto = scan.nextInt();
                 scan.nextLine();
 
@@ -138,9 +139,8 @@ public class AppPilotos {
                     continue;
                 }
 
-                int pilotoId = numeroPiloto;
-
-                aeronave.setPilotoId(pilotoId);
+                Piloto pilotoSelecionado = pilotos[numeroPiloto - 1];
+                aeronave.setPilotoId(pilotoSelecionado);
             }
 
             aeronaves[qtdAeronaves] = aeronave;
@@ -159,6 +159,13 @@ public class AppPilotos {
                 for (int i = 0; i < qtdAeronaves; i++) {
                     System.out.println("\nModelo da aeronave: " + aeronaves[i].getModelo());
                     System.out.println("Número de série: " + aeronaves[i].getNumeroSerie());
+
+                    Piloto pilotoId = aeronaves[i].getPilotoId();
+                    if (pilotoId != null) {
+                    System.out.println("Piloto vinculado: " + aeronaves[i].getPilotoId().getNome());
+                    } else {
+                        System.out.println("Nenhum piloto vinculado.");
+                    }
                 }
                 voltarMenu(scan);
 
@@ -167,10 +174,10 @@ public class AppPilotos {
                 int opc = scan.nextInt();
                 if (opc == 1) {
                     System.out.print("Digite o tamanho do novo armazenamento: ");
-                    int tamanhoVt = scan.nextInt();
+                    int tamanho = scan.nextInt();
                     Piloto[] aux = pilotos;
-                    pilotos = new Piloto[tamanhoVt];
-                    MAX_ELEMENTOS = tamanhoVt;
+                    pilotos = new Piloto[tamanho];
+                    MAX_PILOTOS = tamanho;
     
                     for (int i = 0; i < qtdCadastrados; i++) {
                         pilotos[i] = aux[i];

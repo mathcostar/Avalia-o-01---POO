@@ -4,8 +4,7 @@ public class Aeronave extends Piloto{
     
     private String modelo;
     private String numeroSerie;
-    private int pilotoId;
-
+    private Piloto pilotoId;
     
     public String getModelo() {
         return modelo;
@@ -19,10 +18,10 @@ public class Aeronave extends Piloto{
     public void setNumeroSerie(String numeroSerie) {
         this.numeroSerie = numeroSerie;
     }
-    public int getPilotoId() {
+    public Piloto getPilotoId() {
         return pilotoId;
     }
-    public void setPilotoId(int pilotoId) {
+    public void setPilotoId(Piloto pilotoId) {
         this.pilotoId = pilotoId;
     }
 }
